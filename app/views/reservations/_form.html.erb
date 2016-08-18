@@ -1,42 +1,45 @@
+<%#  # https://rubyplus.com/articles/3701-Auto-Complete-Association-in-Rails-5 %>
+
 <%= form_for(reservation) do |f| %>
-  <% if reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+    <% if reservation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-      <ul>
-      <% reservation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% reservation.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :room_title %>
+      <%# f.collection_select :room_id, Room.order(:title), :id, :title, include_blank: true %>
+      <%= f.text_field :room_title, data: {autocomplete_source: Room.order(:title).map(&:title)} %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :room_id %>
-    <%= f.text_field :room_id %>
-  </div>
+    <div class="field">
+      <%= f.label :from %>
+      <%= f.datetime_select :from %>
+    </div>
 
-  <div class="field">
-    <%= f.label :from %>
-    <%= f.datetime_select :from %>
-  </div>
+    <div class="field">
+      <%= f.label :to %>
+      <%= f.datetime_select :to %>
+    </div>
 
-  <div class="field">
-    <%= f.label :to %>
-    <%= f.datetime_select :to %>
-  </div>
+    <div class="field">
+      <%= f.label :reserved_by %>
+      <%= f.text_field :reserved_by %>
+    </div>
 
-  <div class="field">
-    <%= f.label :reserved_by %>
-    <%= f.text_field :reserved_by %>
-  </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

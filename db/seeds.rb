@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1.upto(10) { |i| Room.create!(title: "Aula #{i}", description: <<END_DOC
+Equipamiento:
+
+* ordenadores: 15 + 1
+* proyector: Sí
+* altavoces: Sí
+
+...
+END_DOC
+) }

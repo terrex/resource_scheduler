@@ -15,7 +15,7 @@
     <% @rooms.each do |room| %>
       <tr>
         <td><%= room.title %></td>
-        <td><%= room.description %></td>
+        <td><%= truncate(room.description) %></td>
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +26,5 @@
 
 <br>
 
-<%= link_to 'New Room', new_room_path %>
+<%= link_to 'New Room', new_room_path %> |
+<%= link_to 'Home', root_path %>

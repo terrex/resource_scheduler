@@ -7,7 +7,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @room.description %>
+  <%= markdown(@room.description) %>
 </p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
